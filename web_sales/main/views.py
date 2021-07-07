@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from main.models import banner,product,users,supplier,orders,order_detail,category,contact,About,image
 
 # Create your views here.
 def index(respone):
