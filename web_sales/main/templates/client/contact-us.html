@@ -1,0 +1,74 @@
+{% extends 'client/Layout.html' %}
+{% block title %} Contact us {% endblock title %}
+{% load static %}
+	<link href="{% static 'cs/responsive.css' %}" rel="stylesheet">
+	<link href="{% static 'cs/style.css' %}" rel="stylesheet">
+{% block content %} 
+	 <div id="contact-page" class="container">
+    	<div class="bg">
+	    	<div class="row">    		
+	    		<div class="col-sm-12">    			   			
+					<h2 class="title text-center">Contact <strong>Us</strong></h2>    			    				    				
+					{% comment %} <div id="gmap" class="contact-map"> {% endcomment %}
+					 <div id="map" class="contact_map2" data-zoom="16" data-latitude="20.984583284623014" data-longitude="105.79826772654529"></div>
+					</div>
+				</div>			 		
+			</div>    	
+    		<div class="row">  	
+	    		<div class="col-sm-8">
+	    			<div class="contact-form">
+	    				<h2 class="title text-center">Get In Touch</h2>
+	    				<div class="status alert alert-success" style="display: none"></div>
+				    	<form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+				            <div class="form-group col-md-6">
+				                <input type="text" name="name" class="form-control" required="required" placeholder="Name">
+				            </div>
+				            <div class="form-group col-md-6">
+				                <input type="email" name="email" class="form-control" required="required" placeholder="Email">
+				            </div>
+				            <div class="form-group col-md-12">
+				                <input type="text" name="subject" class="form-control" required="required" placeholder="Subject">
+				            </div>
+				            <div class="form-group col-md-12">
+				                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
+				            </div>                        
+				            <div class="form-group col-md-12">
+				                <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+				            </div>
+				        </form>
+	    			</div>
+	    		</div>
+	    		<div class="col-sm-4">
+	    			<div class="contact-info">
+	    				<h2 class="title text-center">Contact Info</h2>
+	    				<address>
+	    					<p>MyStore Inc.</p>
+							<p>54 Trieu Khuc Street, Thanh Xuan Distric</p>
+							<p>Ha Noi, Viet Nam</p>
+							<p>Mobile: +84 356881142</p>
+							<p>Email: tuthin2k@gmail.com</p>
+	    				</address>
+	    				<div class="social-networks">
+	    					<h2 class="title text-center">Social Networking</h2>
+							<ul>
+								<li>
+									<a target="_blank" href="https://www.facebook.com/Thifnmi/"><i class="fa fa-facebook"></i></a>
+								</li>
+								<li>
+									<a target="_blank" href="https://twitter.com/Thifnmi"><i class="fa fa-twitter"></i></a>
+								</li>
+								<li>
+									<a target="_blank" href="https://www.linkedin.com/in/thifnmi/"><i class="fa fa-linkedin"></i></a>
+								</li>
+								<li>
+									<a target="_blank" href="https://www.youtube.com/channel/UCoqmxK5Aw-2Z5bV0MDwROsw"><i class="fa fa-youtube"></i></a>
+								</li>
+							</ul>
+	    				</div>
+	    			</div>
+    			</div>    			
+	    	</div>  
+    	</div>	
+    </div><!--/#contact-page-->
+	
+{% endblock content %}
