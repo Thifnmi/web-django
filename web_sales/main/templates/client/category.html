@@ -20,7 +20,9 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{product.image}}" alt="{{product.name}}" />
+											<a href="{% url 'product-detail' id=product.id%} ">
+												<img src="{{product.image}}" alt="{{product.name}}" />
+											</a>
 											<div>
 											<a href="{% url 'product-detail' id=product.id%} ">
 												<p>{{product.name}}</p>
