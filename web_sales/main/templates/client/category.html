@@ -1,0 +1,63 @@
+{% extends 'client/Layout.html' %}
+{% block title %} {{title.name}} {% endblock title %}
+{% load static %}
+{% block content %}
+	<section id="advertisement">
+		<div class="container">
+			<img src="{% static 'images/shop/advertisement.jpg' %}" alt="" />
+		</div>
+	</section>
+	
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="features_items"><!--features_items-->
+						<h2 class="title text-center">Features Items</h2>
+						<div id="tbody" class="row shop_container">
+						{% for product in sp %}
+							<div class="col-lg-3 col-md-4 col-6 grid_item">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{{product.image}}" alt="{{product.name}}" />
+											<div>
+											<a href="{% url 'product-detail' id=product.id%} ">
+												<p>{{product.name}}</p>
+											</a>
+											</div>
+											<h2>{{product.price}}đ</h2>
+											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+						</div>
+						<div class="clearfix lfr-pagination">
+							<ul class="lfr-pagination-buttons pager">
+								{% if sp.has_previous %}
+									<li class="page-item"><a class="page-link" href="?page=1">First<i class="linearicons-arrow-left"></i></a>
+									{% comment %} <li class="page-item"><a class="page-link" href="?page={{ sp.previous_page_number }}">Previous<i class="linearicons-arrow-left"></i></a {% endcomment %}
+								{% endif %}
+								
+								{% for page in sp.paginator.page_range %}
+									{% ifequal num sp.number %}
+										<li class='page-item active'><a class='page-link' href='#'>{{page}}</a></li>
+									{% else %}
+										<li class='page-item'><a class='page-link' href='?page={{page}}'>{{page}}</a></li>
+									{% endifequal %}
+								{% endfor %}
+
+								{% if sp.has_next %}
+									{% comment %} <li class="page-item"><a class="page-link" href="?page={{ sp.next_page_number }}">Next<i class="linearicons-arrow-right"></i></a></li> {% endcomment %}
+									<li class="page-item"><a class="page-link" href="?page={{ sp.paginator.num_pages }}">Last<i class="linearicons-arrow-right"></i></a></li>
+								{% endif %}
+							</ul>
+						</div>
+					</div><!--features_items-->
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock content %}

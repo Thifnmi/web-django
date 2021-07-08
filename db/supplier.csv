@@ -1,0 +1,6 @@
+"id","company_name","image","weburl","product_type","telephone","email","country","address"
+"1","GUCCI","http://localhost:8080/web_ic4/public/client/assets/images/cl_logo_gucci.jpg","GUCCI.COM","3","+842403683223","GUCCIVN@GMAIL.COM","ITALYA","Tòa nhà Eurowindow Multicomplex TAIYO Office,Tầng 5, 27 Trần Duy Hưng, Phường Trung Hòa, Cầu Giấy, Hà Nội"
+"2","LOUIS VUITTON","http://localhost:8080/web_ic4/public/client/assets/images/cl_logo_louis-vuitton.jpg","LOUIS VUITTON.COM","3","02436285888","LOUIS VUTTON@GMAIL.COM","VIỆT NAM","Số 160 Trần Đại Nghĩa - Hai Bà Trưng - Hà Nội"
+"3","CHANEL","http://localhost:8080/web_ic4/public/client/assets/images/cl_logo_chanel.png","CHANEL.COM","2","+842839157310","CHANEL@GMAIL.COM","VIỆT NAM","Số 2, đường Hải Triều, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh"
+"4","DIOR","http://localhost:8080/web_ic4/public/client/assets/images/cl_logo_dior.jpg","DIOR.COM","3","0981173413","DIORVN@gmail.com","Canada","số 18 ngách"
+"5","HERMES","http://localhost:8080/web_ic4/public/client/assets/images/cl_logo_hermes.jpg","HERMES.COM","1","02436285888","HERMES@GMAIL.COM","VIỆT NAM","Số 160 Trần Đại Nghĩa - Hai Bà Trưng - Hà Nội"

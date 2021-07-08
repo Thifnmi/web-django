@@ -3,39 +3,66 @@ from djongo import models
 
 # Create your models here.
 class About(models.Model):
-    id = models.IntegerField(primary_key=True)
+    _id = models.ObjectIdField(primary_key=True)
+    id = models.TextField()
     title = models.TextField()
     image = models.TextField()
     content1 = models.TextField()
     content2 = models.TextField()
+    objects = models.DjongoManager()
+
+    class Meta:
+        db_table = 'main_About'
+
 class banner(models.Model):
-    id = models.IntegerField(primary_key=True)
+    _id = models.ObjectIdField(primary_key=True)
+    id = models.TextField()
     name = models.TextField()
     link = models.TextField()
+    objects = models.DjongoManager()
+
+    class Meta:
+        db_table = 'main_banner'
 
 class category(models.Model):
-    id = models.IntegerField(primary_key=True)
+    _id = models.ObjectIdField(primary_key=True)
+    id = models.TextField()
     name = models.TextField()
     metaTitle = models.TextField()
     description = models.TextField()
+    objects = models.DjongoManager()
+
+    class Meta:
+        db_table = 'main_category'
 
 class contact(models.Model):
-    id = models.IntegerField(primary_key=True)
+    _id = models.ObjectIdField(primary_key=True)
+    id = models.TextField()
     fullname = models.TextField()
     phone = models.TextField()
     email = models.TextField()
     content = models.TextField()
+    objects = models.DjongoManager()
+
+    class Meta:
+        db_table = 'main_contact'
 
 class image(models.Model):
-    id = models.IntegerField(primary_key=True)
-    product_id = models.IntegerField()
+    _id = models.ObjectIdField(primary_key=True)
+    id = models.TextField()
+    product_id = models.TextField()
     imageThumb = models.TextField()
     imageSmall = models.TextField()
     content = models.TextField()
+    objects = models.DjongoManager()
+
+    class Meta:
+        db_table = 'main_image'
 
 class orders(models.Model):
-    id = models.IntegerField(primary_key=True)
-    user_id = models.IntegerField()
+    _id = models.ObjectIdField(primary_key=True)
+    id = models.TextField()
+    user_id = models.TextField()
     fullname = models.TextField()
     phone = models.TextField()
     email = models.TextField()
@@ -43,18 +70,28 @@ class orders(models.Model):
     create_on = models.TextField()
     shipping_status = models.TextField()
     bill_address = models.TextField()
+    objects = models.DjongoManager()
+
+    class Meta:
+        db_table = 'main_orders'
 
 class order_detail(models.Model):
-    id = models.IntegerField(primary_key=True)
-    order_id = models.IntegerField()
-    product_id = models.IntegerField()
-    total_price = models.IntegerField()
-    product_amount = models.IntegerField()
+    _id = models.ObjectIdField(primary_key=True)
+    id = models.TextField()
+    order_id = models.TextField()
+    product_id = models.TextField()
+    total_price = models.TextField()
+    product_amount = models.TextField()
+    objects = models.DjongoManager()
+
+    class Meta:
+        db_table = 'main_order_detail'
 
 class product(models.Model):
-    id = models.IntegerField(primary_key=True)
-    category_id = models.IntegerField()
-    supplier_id = models.IntegerField()
+    _id = models.ObjectIdField(primary_key=True)
+    id = models.TextField()
+    category_id = models.TextField()
+    supplier_id = models.TextField()
     name = models.TextField()
     quantity = models.TextField()
     link = models.TextField()
@@ -62,9 +99,15 @@ class product(models.Model):
     price = models.TextField()
     productCode = models.TextField()
     featureData = models.TextField()
+    objects = models.DjongoManager()
+
+    class Meta:
+        db_table = 'main_product'
+    
 
 class supplier(models.Model):
-    id = models.IntegerField(primary_key=True)
+    _id = models.ObjectIdField(primary_key=True)
+    id = models.TextField()
     company_name = models.TextField()
     image = models.TextField()
     weburl = models.TextField()
@@ -72,9 +115,14 @@ class supplier(models.Model):
     email = models.TextField()
     country = models.TextField()
     address = models.TextField()
+    objects = models.DjongoManager()
+
+    class Meta:
+        db_table = 'main_supplier'
 
 class users(models.Model):
-    id = models.IntegerField(primary_key=True)
+    _id = models.ObjectIdField(primary_key=True)
+    id = models.TextField()
     image = models.TextField()
     username = models.TextField()
     password = models.TextField()
@@ -85,8 +133,12 @@ class users(models.Model):
     email = models.TextField()
     address = models.TextField()
     country = models.TextField()
-    role_id = models.IntegerField()
+    role_id = models.TextField()
     facebook = models.TextField()
     twitter = models.TextField()
     gmail = models.TextField()
     instagram = models.TextField()
+    objects = models.DjongoManager()
+
+    class Meta:
+        db_table = 'main_users'

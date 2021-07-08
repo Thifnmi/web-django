@@ -1,5 +1,5 @@
 {% extends 'client/Layout.html' %}
-{% block title %} Product detail {% endblock title %}
+{% block title %} {{detail.name}} {% endblock title %}
 {% load static %}
 {% block content %}
 	
@@ -150,19 +150,18 @@
 					<div class="product-details"><!--product-details-->
 						<div class="col-sm-5">
 							<div class="view-product">
-								<img src="{% static 'images/product-details/1.jpg' %}" alt="" />
-								<h3>ZOOM</h3>
+								<img src="{{detail.image}}" alt="{{detail.name}}" />
 							</div>
 							<div id="similar-product" class="carousel slide" data-ride="carousel">
-								
 								  <!-- Wrapper for slides -->
+								{% comment %} {% for image in product_image %} {% endcomment %}
 								    <div class="carousel-inner">
+										{% comment %} <div class="item active"> {% endcomment %}
+										  {% comment %} <a href="#"><img src="{{image.imageThumb}}" alt="{{detail.name}}"></a> {% endcomment %}
+										  {% comment %} <a href=""><img src="{% static 'images/product-details/similar2.jpg' %}" alt=""></a>
+										  <a href=""><img src="{% static 'images/product-details/similar3.jpg' %}" alt=""></a> {% endcomment %}
+										{% comment %} </div> {% endcomment %}
 										<div class="item active">
-										  <a href=""><img src="{% static 'images/product-details/similar1.jpg' %}" alt=""></a>
-										  <a href=""><img src="{% static 'images/product-details/similar2.jpg' %}" alt=""></a>
-										  <a href=""><img src="{% static 'images/product-details/similar3.jpg' %}" alt=""></a>
-										</div>
-										<div class="item">
 										  <a href=""><img src="{% static 'images/product-details/similar1.jpg' %}" alt=""></a>
 										  <a href=""><img src="{% static 'images/product-details/similar2.jpg' %}" alt=""></a>
 										  <a href=""><img src="{% static 'images/product-details/similar3.jpg' %}" alt=""></a>
@@ -176,29 +175,42 @@
 									</div>
 
 								  <!-- Controls -->
-								  <a class="left item-control" href="#similar-product" data-slide="prev">
-									<i class="fa fa-angle-left"></i>
-								  </a>
-								  <a class="right item-control" href="#similar-product" data-slide="next">
-									<i class="fa fa-angle-right"></i>
-								  </a>
+									<a class="left item-control" href="#similar-product" data-slide="prev">
+										<i class="fa fa-angle-left"></i>
+									</a>
+									<a class="right item-control" href="#similar-product" data-slide="next">
+										<i class="fa fa-angle-right"></i>
+									</a>
+								{% comment %} {% endfor %} {% endcomment %}
 							</div>
 
 						</div>
 						<div class="col-sm-7">
 							<div class="product-information"><!--/product-information-->
 								<img src="{% static 'images/product-details/new.jpg' %}" class="newarrival" alt="" />
-								<h2>Anne Klein Sleeveless Colorblock Scuba</h2>
-								<p>Web ID: 1089772</p>
+								<h2>{{detail.name}}</h2>
+								<p>Product ID: {{detail.productCode}}</p>
 								<img src="{% static 'images/product-details/rating.png' %}" alt="" />
 								<span>
-									<span>US $59</span>
-									<label>Quantity:</label>
+									<span>{{detail.price}}đ</span>
+									{% comment %} <label>Quantity:</label>
 									<input type="text" value="3" />
 									<button type="button" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
-									</button>
+									</button> {% endcomment %}
+									<div class="cart_extra">
+									<div class="cart-product-quantity">
+										<div class="quantity">
+											<input type="button" value="-" class="minus">
+											<input type="text" name="quantity" value="1" title="Qty" class="qty" size="4">
+											<input type="button" value="+" class="plus">
+										</div>
+									</div>
+									<div class="cart_btn">
+										<a class="btn btn-fill-out btn-addtocart" type="button" onclick="addToCart(event, this)" style="color:white;"><i class=" icon-basket-loaded"></i>Thêm vào giỏ hàng</a>
+									</div>
+                    </div>
 								</span>
 								<p><b>Availability:</b> In Stock</p>
 								<p><b>Condition:</b> New</p>

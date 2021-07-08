@@ -14,7 +14,7 @@
     <link href="{% static 'css/animate.css' %}" rel="stylesheet">
 	<link href="{% static 'css/main.css' %}" rel="stylesheet">
 	<link href="{% static 'css/responsive.css' %}" rel="stylesheet">  
-    <link rel="shortcut icon" data-default-icon="{% static 'images/ico/favicon.ico' %}">
+    <link rel="shortcut icon" href="{% static 'images/ico/favicon.ico' %}" data-default-icon="{% static 'images/ico/favicon.ico' %}">
 	{% comment %} href="{% static 'images/ico/favicon.ico' %}" {% endcomment %}
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/ico/apple-touch-icon-144-precomposed.png' %}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/ico/apple-touch-icon-114-precomposed.png' %}">
@@ -91,9 +91,9 @@
 								<li><a href="{% url 'index' %}" class="active">Home</a></li>
 								<li class="dropdown"><a href="">Category<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="{% url 'shop' %}">Products</a></li>
-										<li><a href="{% url 'checkout' %}">Checkout</a></li> 
-										<li><a href="{% url 'cart' %}">Cart</a></li> 
+										{% for category in categories %}
+											<li><a href="{% url 'category' id=category.id %}">{{category.name}}</a></li>
+										{% endfor %}
                                     </ul>
                                 </li>
 								<li><a href="{% url 'contact' %}">Contact</a></li>
