@@ -58,3 +58,9 @@ def register(respone):
 def profile(respone):
     categories = category.objects.all()
     return render(respone, "client/profile.html",{"categories" : categories})
+
+def index_manager(response):
+    return render(response, "page/index.html")
+
+def admin_login(response):
+    return render(response, "page/login.html")
