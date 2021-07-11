@@ -10,53 +10,47 @@
                     <div class="login_wrap">
                         <div class="padding_eight_all bg-white">
                             <div class="heading_s1">
-                                <h3 style="text-align: center;">Tạo tài khoản</h3>
+                                <h3 style="text-align: center;">Create an account</h3>
                             </div>
                             <form action="" method="post">
                                 <div class="form-group">
-                                    <input type="text" required="" class="form-control" name="fullname" placeholder="Họ và tên">
+                                    <input type="text" required="" class="form-control" name="fullname" placeholder="Full name">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" required="" class="form-control" name="username" placeholder="Username">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" required="" minlength="8" type="password" name="password" placeholder="Mật khẩu">
+                                    <input class="form-control" required="" minlength="8" type="password" name="password" placeholder="Password">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" required="" minlength="8" type="password" name="repassword" placeholder="Xác nhận mật khẩu">
+                                    <input class="form-control" required="" minlength="8" type="password" name="repassword" placeholder="Confirm Password">
                                 </div>
                                 <div class="form-group">
-                                    <label class="bold">Giới tính</label>
+                                    <label class="bold">Gender</label>
                                     <select class="form-control first_null not_chosen" name="gender">
-                                        <option value="Nam">Nam</option>
-                                        <option value="Nữ">Nữ</option>
-                                        <option value="Khác">Khác</option>
+                                        <option value="Nam">Male</option>
+                                        <option value="Nữ">Female</option>
+                                        <option value="Khác">Orther</option>
                                     </select>
-                                    <!-- <input type="radio" name="gender" value="Male">Nam
-                                        <input type="radio" name="gender" value="Female">Nữ -->
                                 </div>
                                 <div class="form-group">
-                                    <label class="bold">Ngày Sinh</label>
+                                    <label class="bold">Birthday</label>
                                     <input type="date" required="" class="form-control" name="birthday">
                                 </div>
                                 <div class="form-group">
-                                    <input type="phone" required="" class="form-control" name="phonenumber" placeholder="Số điện thoại">
+                                    <input type="phone" required="" class="form-control" name="phonenumber" placeholder="Phone Number">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" required="" class="form-control" name="address" placeholder="Địa chỉ">
+                                    <input type="text" required="" class="form-control" name="address" placeholder="Address">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" required="" class="form-control" name="email" placeholder="Email" required>
                                 </div>
-
-                                <!-- <div class="form-group">
-                                    <input type="text" required="" class="form-control" name="country" placeholder="Enter Your Country">
-                                </div> -->
                                 <div class="login_footer form-group">
                                     <div class="chek-form">
                                         <div class="custome-checkbox">
                                             <input class="form-check-input" required type="checkbox" name="checkbox" id="exampleCheckbox2" value="">
-                                            <label class="form-check-label" for="exampleCheckbox2"><span>Tôi đồng ý điều khoản &amp; chính sách.</span></label>
+                                            <label class="form-check-label" for="exampleCheckbox2"><span>I agree to the terms &amp; policies.</span></label>
                                         </div>
                                     </div>
                                 </div>
@@ -64,12 +58,9 @@
                                     <button type="submit" class="btn btn-fill-out btn-block" name="register">Register</button>
                                 </div>
                             </form>
-
-
                             <div class="different_login">
                                 <span> or</span>
                             </div>
-
                             <div class="form-note text-center">Allready account? <a href="{% url 'login' %}">Login</a></div>
                         </div>
                     </div>
