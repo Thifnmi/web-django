@@ -5,8 +5,7 @@ from main.models import banner,product,users,supplier,orders,order_detail,catego
 # Create your views here.
 @csrf_exempt
 def index(response):
-    categories = category.objects.all()
-    return render(response, "page/dashboard.html", {"categories": categories})
+    return render(response, "page/dashboard.html", {})
 
 def mailbox(response):
     return render(response, "page/mailbox.html")
@@ -40,9 +39,6 @@ def addcategories(response):
 
 def editcategories(response):
     return render(response, "page/category/edit.html")
-
-# def categorydetail(response):
-#     return render(response, "page/category/category-detail.html")
 
 def invoices(response):
     return render(response, "page/invoice/index.html")
