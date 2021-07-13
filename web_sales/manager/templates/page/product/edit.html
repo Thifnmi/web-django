@@ -1,0 +1,123 @@
+{% extends 'page/Layout.html' %}
+{% block title %}Admin | Mailbox{% endblock title %}
+{% load static %}
+{% block content %}
+
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Basic Information</h5>
+                <form class="form-material form-horizontal m-t-30" action='' method='POST' enctype="multipart/form-data">
+                <div class="form-group">
+                    <label class="col-md-12" for="example-text">Product Name</span>
+                    </label>
+                    <div class="col-md-12">
+                        <input type="text" id="text" name="product_name" class="form-control"
+                            placeholder="enter product name" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-12" for="price">Price</span>
+                    </label>
+                    <div class="col-md-12">
+                        <input type="text" id="price" name="price" class="form-control"
+                            placeholder="enter product price" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-12" for="quantity">Quantity</span>
+                    </label>
+                    <div class="col-md-12">
+                        <input type="text" id="quantity" name="quantity" class="form-control"
+                            placeholder="enter quantity" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-12" for="color">Product Code</span>
+                    </label>
+                    <div class="col-md-12">
+                        <input type="text" id="color" name="code" class="form-control "
+                            placeholder="Product code" value="">
+                    </div>
+                </div>
+                    <div class="form-group">
+                        <label class="col-sm-12">Category</label>
+                        <div class="col-sm-12">
+                            <select class="form-control">
+                            
+                                <option value="" selected></option>'
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-12">Provider</label>
+                        <div class="col-sm-12">
+                            <select class="form-control">
+                                <option value="">'.$item['company_name'].'</option>'
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Thumnail</h4>
+                                    <label for="input-file-now">Choose a image</label>
+                                    <input type="file" id="input-file-now" class="dropify" name='fileToUpload' />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Upload More Image</h4>
+                                    <label for="input-file-now-custom-1">More Image</label>
+                                    <input type="file" id="input-file-now-custom-1" class="dropify" name ='image_more[]' multiple />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Description</h4>
+                                    <div id="education_fields"></div>
+                                    
+                                    <div class="row">
+                                        <div class="col-sm-3 nopadding">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="Schoolname" name="name[]" value="" placeholder="Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 nopadding">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="Major" name="value[]" value="" placeholder="value">
+                                            </div>
+                                        </div>
+                                        <!-- <div class="input-group-append" style="height: 40px;">
+                                            <button class="btn btn-success" type="button" onclick="education_fields();"><i class="fa fa-plus"></i></button>
+                                        </div> -->
+
+
+                                    </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">Submit</button>
+                    <button type="submit" class="btn btn-inverse waves-effect waves-light">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- End PAge Content -->
+{% endblock content %}

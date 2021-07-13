@@ -1,0 +1,21 @@
+.obj-action {
+    display: flex;
+    justify-content: center;
+    /* position: absolute; */
+    /* right: 30px; */
+}
+
+.obj-action .ac{
+    padding: 0 10px;
+    font-size: 20px;
+}
+
+/* .obj-item:hover .obj-action{
+    display: flex;
+} */
+
+
+.btn-edit-profile{
+    position: absolute;
+    right: 25px;
+}
