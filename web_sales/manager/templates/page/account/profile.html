@@ -1,5 +1,5 @@
 {% extends 'page/Layout.html' %}
-{% block title %}Admin | Profile | {% endblock title %}
+{% block title %}Admin | Profile | {{userdetail.fullname}} {% endblock title %}
 {% load static %}
 {% block content %}
 <div class="row d-flex justify-content-center">
@@ -7,14 +7,12 @@
     <div class="col-lg-6 ">
         <div class="card">
             <div class="card-body">
-                <center class="m-t-30"> <img src="<?php echo base_url() . $user['image'] ?>" class="img-circle" width="150">
-                    <h4 class="card-title m-t-10"><?= $user['fullname'] ?></h4>
-                    <h6 class="card-subtitle"><?php if ($user['role_id'] == '1') {
-                                                    echo 'Admin';
-                                                } else {
-                                                    echo 'User';
-                                                } ?></h6>
-
+                <center class="m-t-30"> <img src="{{userdetail.image}}" class="img-circle" width="150">
+                    <h4 class="card-title m-t-10">{{userdetail.fullname}}</h4>
+                    <h6 class="card-subtitle">{% if userdetail.role_id == "0" %} Super Admin
+                        {% elif userdetail.role_id == "1" %}Admin
+                        {% else %}Custommer
+                        {% endif %}</h6>
                 </center>
             </div>
             <div>
@@ -22,11 +20,13 @@
             </div>
             <div class="card-body">
                 <small class="text-muted p-t-30 db">Date of Birth</small>
-                <h6><?= $user['birthday'] ?></h6>
+                <h6>{{user.birthday}}</h6>
                 <small class="text-muted">Email address </small>
-                <h6><?= $user['email'] ?></h6> <small class="text-muted p-t-30 db">Phone</small>
-                <h6><?= $user['phone_number'] ?></h6> <small class="text-muted p-t-30 db">Address</small>
-                <h6><?= $user['address'] ?></h6>
+                <h6>{{user.email}}</h6>
+                <small class="text-muted p-t-30 db">Phone</small>
+                <h6>{{user.telephone}}</h6>
+                <small class="text-muted p-t-30 db">Address</small>
+                <h6>{{user.address}}</h6>
 
 
                 <br>

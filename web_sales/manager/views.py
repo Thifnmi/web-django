@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate, login
 from main.models import banner,product,users,orders,order_detail,category,contact,About,image,provider
 
 # Create your views here.
@@ -15,10 +16,18 @@ def mailbox_detail(response,id):
     return render(response, "page/mail_detail.html")
 
 def login(response):
+    if(response.method == 'POST'):
+        username = response.POST.get('username','')
+        password = response.POST.get('password','')
+        account = users.objects.get(username=username)
+        if (account.password == password and account.role_id != "2"):
+            response.session.set_expiry(30)
+            return redirect("index-admin")
     return render(response, "page/login.html")
 
 def logout(response):
-    return render(response, "page/login.html")
+
+    return redirect("login-admin")
 
 def user(response):
     user = users.objects.all()
