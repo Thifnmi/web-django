@@ -105,7 +105,7 @@ class product(models.Model):
         db_table = 'main_product'
     
 
-class supplier(models.Model):
+class provider(models.Model):
     _id = models.ObjectIdField(primary_key=True)
     id = models.TextField()
     company_name = models.TextField()
@@ -118,7 +118,7 @@ class supplier(models.Model):
     objects = models.DjongoManager()
 
     class Meta:
-        db_table = 'main_supplier'
+        db_table = 'main_provider'
 
 class users(models.Model):
     _id = models.ObjectIdField(primary_key=True)

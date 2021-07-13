@@ -9,6 +9,7 @@
             <div class="card-body">
                 <h5 class="card-title">Basic Information</h5>
                 <form class="form-material form-horizontal m-t-30" action="" method='POST' enctype="multipart/form-data">
+                {% csrf_token %}
                     <div class="form-group">
                         <label class="col-md-12" for="example-text">Product Name</span>
                         </label>

@@ -3,5 +3,7 @@
 {% load static %}
 {% block content %}
 <h1>Dashboard</h1>
-
+{% for supplier in suppliers %}
+    <h1>{{supplier.id}}</h1>
+{% endfor %}
 {% endblock content %}

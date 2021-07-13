@@ -16,27 +16,25 @@
                                 <th>Company Name</th>
                                 <th>Website</th>
                                 <th>Country</th>
-                                <th>Product</th>
-                                <th></th>
+                                <th><center>Actions</center></th>
                             </tr>
                         </thead>
 
                         <tbody>
+                        {% for supplier in supplier %}
                             <tr class="obj-item">
-                                <td>1</td>
-                                <td>cc</td>
-                                <td>a</td>
-                                <td>a</td>
-                                <td>áđá</td>
+                                <td>{{supplier.id}}</td>
+                                <td>{{supplier.company_name}}</td>
+                                <td><a target="_blank" href="{{supplier.weburl}}">{{supplier.weburl}}</a></td>
+                                <td>{{supplier.country}}</td>
                                 <td>
                                     <div class="obj-action">
                                         <div class="ac">
-
-                                            <a href="" data-toggle="tooltip" data-placement="bottom"
+                                            <a href="{% url 'supplier-detail' id=supplier.id %}" data-toggle="tooltip" data-placement="bottom"
                                             title="Detail"><i class="fas fa-info-circle"></i></a>
                                         </div>
                                         <div class="ac">
-                                            <a href="" data-toggle="tooltip" data-placement="bottom"
+                                            <a href="{% url 'edit-supplier' id=supplier.id %}" data-toggle="tooltip" data-placement="bottom"
                                             title="Edit"><i class="far fa-edit"></i> </a>
                                         </div>
                                         <div class="ac">
@@ -48,7 +46,7 @@
                                     </div>
                                 </td>
                             </tr>
-
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

@@ -16,7 +16,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Product Name</th>
-                                <th>Provider</th>
+                                <th>Supplier</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
                                 <th>Image</th>
@@ -24,31 +24,36 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="obj-item">
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><img src=""alt="" width="50" height="50"></td>
-                                <!-- <td>63-(612)356-9955</td> -->
-                                <td>
-                                    <div class="obj-action">
-                                        <div class="ac">
+                            {% for product in products %}
+                                <tr class="obj-item">
+                                    <td>{{product.id}}</td>
+                                    <td>{{product.name}}</td>
+                                    {% for supplier in suppliers %}
+                                        {% if supplier.id == product.supplier_id %}
+                                            <td>{{supplier.company_name}}</td>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <td>{{product.quantity}}</td>
+                                    <td>{{product.price}} VNĐ</td>
+                                    <td><img src="{{product.image}}"alt="" width="50" height="50"></td>
+                                    <!-- <td>63-(612)356-9955</td> -->
+                                    <td>
+                                        <div class="obj-action">
+                                            <div class="ac">
 
-                                            <a href="" data-toggle="tooltip" data-placement="bottom" title="Detail"><i class="fas fa-info-circle"></i></a>
-                                        </div>
-                                        <div class="ac">
-                                            <a href="" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="far fa-edit"></i> </a>
-                                        </div>
-                                        <div class="ac">
-                                            <a href="" onclick="return confirm('Are you sure?');" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="far fa-trash-alt"></i></a>
-                                        </div>
+                                                <a href="{% url 'product-detail' id=product.id%}" data-toggle="tooltip" data-placement="bottom" title="Detail"><i class="fas fa-info-circle"></i></a>
+                                            </div>
+                                            <div class="ac">
+                                                <a href="{% url 'edit-product' id=product.id%}" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="far fa-edit"></i> </a>
+                                            </div>
+                                            <div class="ac">
+                                                <a href="" onclick="return confirm('Are you sure?');" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                            </div>
 
-                                    </div>
-                                </td>
-                            </tr>
-
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

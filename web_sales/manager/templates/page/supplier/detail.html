@@ -8,9 +8,8 @@
     <div class="col-lg-6 ">
         <div class="card">
             <div class="card-body">
-                <center class="m-t-30"> <img src="" class="img-circle" width="150">
-                    <h4 class="card-title m-t-10">tuvanthin</h4>
-                    
+                <center class="m-t-30"> <img src="{{supplier.image}}" class="img-circle" width="150">
+                    {% comment %} <h4 class="card-title m-t-10">{{supplier.company_name}}</h4> {% endcomment %}
                 </center>
             </div>
             <div>
@@ -18,21 +17,19 @@
             </div>
             <div class="card-body">
                 <small class="text-muted p-t-30 db">Company Name</small>
-                <h6></h6> 
+                <h6>{{supplier.company_name}}</h6> 
                 <small class="text-muted">Web url</small>
-                <h6></h6>
-                <small class="text-muted p-t-30 db">Product type</small>
-                <h6></h6> 
+                <h6>{{supplier.weburl}}</h6>
+                {% comment %} <small class="text-muted p-t-30 db">Product type</small>
+                <h6>{{supplier.company_name}}</h6>  {% endcomment %}
                 <small class="text-muted p-t-30 db">Telephone</small>
-                <h6></h6>
+                <h6>{{supplier.telephone}}</h6>
                 <small class="text-muted p-t-30 db">Email</small>
-                <h6></h6>
+                <h6>{{supplier.email}}</h6>
                 <small class="text-muted p-t-30 db">Address</small>
-                <h6></h6>
+                <h6>{{supplier.address}}</h6>
                 <small class="text-muted p-t-30 db">Country</small>
-                <h6></h6>
-                
-                
+                <h6>{{supplier.country}}</h6> 
             </div>
         </div>
     </div>

@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
-from .models import banner,product,users,supplier,orders,order_detail,category,contact,About,image
+from .models import banner,product,users,orders,order_detail,category,contact,About,image,provider
 
 # Create your views here.
 @csrf_exempt
 def index(respone):
-    suppliers = supplier.objects.all()
+    suppliers = provider.objects.all()
     categories = category.objects.all()
     ao = product.objects.filter(category_id=1).order_by()[:4]
     quandai = product.objects.filter(category_id=2).order_by()[:4]

@@ -10,13 +10,14 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Basic Information</h5>
-                <form class="form-material form-horizontal m-t-30" action='' method='POST' enctype="multipart/form-data">
+                <form class="form-material form-horizontal m-t-30" action="{% url 'edit-product' id=productdetail.id %}" method='POST' enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class="form-group">
                     <label class="col-md-12" for="example-text">Product Name</span>
                     </label>
                     <div class="col-md-12">
                         <input type="text" id="text" name="product_name" class="form-control"
-                            placeholder="enter product name" value="">
+                            placeholder="enter product name" value="{{productdetail.name}}">
                     </div>
                 </div>
                 <div class="form-group">
@@ -24,7 +25,7 @@
                     </label>
                     <div class="col-md-12">
                         <input type="text" id="price" name="price" class="form-control"
-                            placeholder="enter product price" value="">
+                            placeholder="enter product price" value="{{productdetail.price}}">
                     </div>
                 </div>
                 <div class="form-group">
@@ -32,7 +33,7 @@
                     </label>
                     <div class="col-md-12">
                         <input type="text" id="quantity" name="quantity" class="form-control"
-                            placeholder="enter quantity" value="">
+                            placeholder="enter quantity" value="{{productdetail.quantity}}">
                     </div>
                 </div>
                 <div class="form-group">
@@ -40,15 +41,21 @@
                     </label>
                     <div class="col-md-12">
                         <input type="text" id="color" name="code" class="form-control "
-                            placeholder="Product code" value="">
+                            placeholder="Product code" value="{{productdetail.productCode}}">
                     </div>
                 </div>
                     <div class="form-group">
                         <label class="col-sm-12">Category</label>
                         <div class="col-sm-12">
                             <select class="form-control">
-                            
-                                <option value="" selected></option>'
+                            {% for category in categories %}
+                                {% if productdetail.category_id == category.id %}
+                                     <option value="{{category.id}}" selected>{{category.name}}</option>
+                                {% else %}
+                                    <option value="{{category.id}}">{{category.name}}</option>
+                                {% endif %}
+                                
+                            {% endfor %}
                             </select>
                         </div>
                     </div>
@@ -56,7 +63,14 @@
                         <label class="col-sm-12">Provider</label>
                         <div class="col-sm-12">
                             <select class="form-control">
-                                <option value="">'.$item['company_name'].'</option>'
+                                {% comment %} <option value="" selected></option> {% endcomment %}
+                                {% for supplier in suppliers %}
+                                    {% if productdetail.supplier_id == supplier.id %}
+                                        <option value="{{supplier.id}}" selected>{{supplier.company_name}}</option>
+                                    {% else %}
+                                        <option value="{{supplier.id}}">{{supplier.company_name}}</option>
+                                    {% endif %}
+                                {% endfor %}
                             </select>
                         </div>
                     </div>
@@ -98,20 +112,14 @@
                                                 <input type="text" class="form-control" id="Major" name="value[]" value="" placeholder="value">
                                             </div>
                                         </div>
-                                        <!-- <div class="input-group-append" style="height: 40px;">
-                                            <button class="btn btn-success" type="button" onclick="education_fields();"><i class="fa fa-plus"></i></button>
-                                        </div> -->
-
-
                                     </div>
-                                    <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">Submit</button>
-                    <button type="submit" class="btn btn-inverse waves-effect waves-light">Cancel</button>
+                    <button type="submit" class="btn btn-inverse waves-effect waves-light"><a href="{% url 'manager-product' %}">Cancel</a></button>
                 </form>
             </div>
         </div>

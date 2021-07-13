@@ -11,6 +11,7 @@
             <div class="card-body">
                 <h5 class="card-title">Basic Information</h5>
                 <form class="form-material form-horizontal m-t-30" enctype="multipart/form-data" method='POST' >
+                {% csrf_token %}
                     <div class="form-group">
                         <label class="col-md-12" for="example-text">Company Name</span>
                         </label>
@@ -27,7 +28,7 @@
                             placeholder="enter url website">
                         </div>
                     </div>
-                    <div class="form-group">
+                    {% comment %} <div class="form-group">
                         <label class="col-sm-12">Product Type</label>
                         <div class="col-sm-12">
                             <select class="form-control" name='type'>
@@ -35,7 +36,7 @@
                                 
                             </select>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                     <div class="form-group">
                         <label class="col-md-12" for="email">Email</span>
                         </label>

@@ -9,9 +9,9 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Basic Information</h5>
-                <?php foreach ($info as $user) : ?>
 
                     <form class="form-material form-horizontal m-t-30" method="POST" action="#" enctype="multipart/form-data">
+                    {% csrf_token %}
                         <div class="form-group">
                             <label class="col-md-12" for="example-text">User Name</span>
                             </label>
@@ -37,8 +37,7 @@
                             <label class="col-md-12" for="bdate">Date of Birth</span>
                             </label>
                             <div class="col-md-12">
-                                <input type="date" id="bdate" name="birthday" class="form-control mydatepicker" value='<?php echo date("Y-m-d", strtotime($user["birthday"])); ?>''
-                                                >
+                                <input type="date" id="bdate" name="birthday" class="form-control mydatepicker" value='<?php echo date("Y-m-d", strtotime($user["birthday"])); ?>'>
                                         </div>
                                     </div>
                                     <div class="form-group">

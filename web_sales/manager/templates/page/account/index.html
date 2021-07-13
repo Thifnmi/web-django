@@ -10,9 +10,6 @@
                 <h6 class="card-title">All Account</h6>
                 <div class="table-responsive">
                     <table id="example23" class="table table-striped">
-                        <?php
-                        session_start();
-                        ?>
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -25,38 +22,35 @@
                                 <th></th>
                             </tr>
                         </thead>
-
                         <tbody>
-                            <?php foreach ($user as $row) : ?>
+                            {% for user in user %}
                                 <tr class="obj-item">
-                                    <td><?= $row['id'] ?></td>
-                                    <td><?= $row['username'] ?></td>
-                                    <td><?= $row['fullname'] ?></td>
-                                    <td><?= $row['email'] ?></td>
-                                    <td><?= $row['birthday'] ?></td>
-                                    <td><?= $row['phone_number'] ?></td>
-                                    <td><?php if ($row['role_id'] == '1') {
-                                            echo 'Admin';
-                                        } else {
-                                            echo 'User';
-                                        } ?></td>
+                                    <td>{{user.id}}</td>
+                                    <td>{{user.username}}</td>
+                                    <td>{{user.fullname}}</td>
+                                    <td>{{user.email}}</td>
+                                    <td>{{user.birthday}}</td>
+                                    <td>{{user.phonenumber}}</td>
+                                    {% if user.role_id == "0" %}<td>Super Admin</td>
+                                    {% elif user.role_id == "1" %}<td>Admin</td>
+                                    {% else %}<td> Custommer</td>
+                                    {% endif %}
                                     <td>
                                         <div class="obj-action">
                                             <div class="ac">
-
-                                                <a href="<?php echo base_url() . '/admin/profile?id=' . $row['id'] ?>" data-toggle="tooltip" data-placement="bottom" title="Detail"><i class="fas fa-info-circle"></i></a>
+                                                <a href="{% url 'profile-user' id=user.id %}" data-toggle="tooltip" data-placement="bottom" title="Detail"><i class="fas fa-info-circle"></i></a>
                                             </div>
                                             <div class="ac">
-                                                <a href="<?php echo base_url() . '/admin/admin/edit?id=' . $row['id'] ?>" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="far fa-edit"></i> </a>
+                                                <a href="{% url 'edit-user' id=user.id %}" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="far fa-edit"></i> </a>
                                             </div>
                                             <div class="ac">
-                                                <a href="<?php echo base_url() . '/admin/admin/delete?username=' . $row['username'] ?>" data-toggle="tooltip" data-placement="bottom" onclick="return confirm('Are you sure?');" id="sa-confirm" data-original-title="Delete"><i class="far fa-trash-alt"></i></a>
+                                                <a href="" data-toggle="tooltip" data-placement="bottom" onclick="return confirm('Are you sure?');" id="sa-confirm" data-original-title="Delete"><i class="far fa-trash-alt"></i></a>
                                             </div>
 
                                         </div>
                                     </td>
                                 </tr>
-                            <?php endforeach; ?>
+                            {% endfor %}
 
                         </tbody>
                     </table>
