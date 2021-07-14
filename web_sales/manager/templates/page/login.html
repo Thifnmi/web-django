@@ -10,8 +10,8 @@
     <meta name="author" content="">
     {% load static %}
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'page/assets/images/favicon.png' %}">
-    <title>Elite Admin Template - The Ultimate Multipurpose admin template</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'page/assets/images/logo_dark.png' %}">
+    <title>Admin | Login</title>
     
     <!-- page css -->
     <link href="{% static 'page/crm/dist/css/pages/login-register-lock.css' %}" rel="stylesheet">
@@ -28,6 +28,11 @@
 </head>
 
 <body class="skin-default card-no-border">
+{% if messages %}
+    {% for message in messages %}
+    <script>alert("{{message}}")</script>
+    {% endfor %}
+{% endif %}
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->

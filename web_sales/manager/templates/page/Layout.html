@@ -150,14 +150,12 @@
                     <div class="user-pro-body">
                         <div><img src="" alt="user-img" class="img-circle"></div>
                         <div class="dropdown">
-                            <a href="javascript:void(0);" class="dropdown-toggle u-dropdown link hide-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">tu van thin<span class="caret"></span></a>
+                            <a href="javascript:void(0);" class="dropdown-toggle u-dropdown link hide-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{user.name}<span class="caret"></span></a>
                             <div class="dropdown-menu animated flipInY">
                                 <!-- text-->
-                                <a href="{% url 'profile-user' id=1%}" class="dropdown-item"><i class="ti-user"></i> My
-                                    Profile</a>
+                                <a href="{% url 'profile-user' id=1%}" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
                                 <!-- text-->
-                                <a href="{% url 'logout-admin' %}" class="dropdown-item"><i class="fas fa-power-off"></i>
-                                    Logout</a>
+                                <a href="{% url 'logout-admin' %}" class="dropdown-item"><i class="fas fa-power-off"></i> Logout</a>
                                 <!-- text-->
                             </div>
                         </div>

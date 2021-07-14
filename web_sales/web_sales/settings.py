@@ -80,10 +80,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'websales',
-        # 'ENFORCE_SCHEMA': False,
-        #     'CLIENT': {
-        #         'host': 'mongodb+srv://Thifnmi:SbvDXpm6K7d8Lw.@cluster0.kws6b.mongodb.net/websales?retryWrites=true&w=majority'
-        #         }
+        'ENFORCE_SCHEMA': False,
+            'CLIENT': {
+                'host': 'mongodb+srv://Thifnmi:SbvDXpm6K7d8Lw.@cluster0.kws6b.mongodb.net/websales?retryWrites=true&w=majority'
+                }
     }
 }
 
