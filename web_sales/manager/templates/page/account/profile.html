@@ -33,7 +33,7 @@
                 <button class="btn btn-circle btn-secondary"><i class="fab fa-facebook-f"></i></button>
                 <button class="btn btn-circle btn-secondary"><i class="fab fa-twitter"></i></button>
                 <button class="btn btn-circle btn-secondary"><i class="fab fa-youtube"></i></button>
-                <button class="btn btn-circle btn-secondary btn-edit-profile" data-toggle="tooltip" data-placement="bottom" title="Edit Profile"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-circle btn-secondary btn-edit-profile" data-toggle="tooltip" data-placement="bottom" title="Edit Profile"><a href="{% url 'edit-user' id=user.id %}"><i class="fas fa-edit"></i></a></button>
 
             </div>
         </div>

@@ -1,5 +1,8 @@
+from django.conf.urls import url
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('',views.index,name="index-admin"),
@@ -28,3 +31,5 @@ urlpatterns = [
     path('suppliers/detail/<str:id>',views.supplierdetail,name="supplier-detail"),
     
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

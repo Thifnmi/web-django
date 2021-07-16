@@ -1,34 +1,36 @@
 from django.shortcuts import render,redirect
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
-from django.contrib.sessions.backends.base import SessionBase
 from main.models import banner,product,users,orders,order_detail,category,contact,About,image,provider
 
-# Create your views here.
 
+# Create your views here.
+@csrf_exempt
 def index(response):
     if not response.session._session:
         return redirect("login-admin")
-    return render(response, "page/dashboard.html", {})
+    user = users.objects.get(id=response.session['id'])
+    return render(response, "page/dashboard.html", {"user":user})
 
 @csrf_exempt
 def mailbox(response):
     if not response.session._session:
         return redirect("login-admin")
-    return render(response, "page/mailbox.html")
+    user = users.objects.get(id=response.session['id'])
+    return render(response, "page/mailbox.html",{"user":user})
 
 @csrf_exempt
 def mailbox_detail(response,id):
     if not response.session._session:
         return redirect("login-admin")
-    return render(response, "page/mail_detail.html")
+    user = users.objects.get(id=response.session['id'])
+    return render(response, "page/mail_detail.html",{"user":user})
 
 @csrf_exempt
 def login(response):
     if(response.method == 'POST'):
-        username = response.POST.get('username','')
-        password = response.POST.get('password','')
+        username = response.POST.get('username')
+        password = response.POST.get('password')
         account = users.objects.get(username=username)
         if (account.password == password and account.role_id != "2"):
             response.session['id'] = account.id
@@ -46,45 +48,65 @@ def logout(response):
     if not response.session._session:
         return redirect("login-admin")
     del response.session['id']
-    return logout(response)
+    return redirect("login-admin")
 
 @csrf_exempt
 def user(response):
     if not response.session._session:
         return redirect("login-admin")
-    user = users.objects.all()
-    return render(response, "page/account/index.html",{"user":user})
+    user = users.objects.get(id=response.session['id'])
+
+    alluser = users.objects.all()
+    return render(response, "page/account/index.html",{"alluser":alluser,"user":user})
 
 @csrf_exempt
 def adduser(response):
     if not response.session._session:
         return redirect("login-admin")
     if(response.method =='POST'):
+        username = response.POST.get('username')
+        password = response.POST.get('password')
+        fullname = response.POST.get('fullname')
+        birthday = response.POST.get('birthday')
+        gender = response.POST.get('gender')
+        email = response.POST.get('email')
+        phone = response.POST.get('phone')
+        address = response.POST.get('address')
+        country = response.POST.get('country')
+        facebook = response.POST.get('facebook')
+        image = response.POST.get('file')
+        print(f"{username} {password} {fullname} {birthday} {gender} {email} {phone} {address} {country} {facebook} {image}")
+        new_account = users(username=username,password=password, fullname=fullname,birthday=birthday,gender=gender,email=email,phonenumber=phone,address=address,country=country,facebook=facebook,image=image)
+        new_account.save()
         return redirect("users")
-    return render(response, "page/account/add.html")
+    user = users.objects.get(id=response.session['id'])
+    return render(response, "page/account/add.html",{"user":user})
 
 @csrf_exempt
 def edituser(response,id):
     if not response.session._session:
         return redirect("login-admin")
     if(response.method =='POST'):
-        return redirect("user")
+        return redirect("users")
+    user = users.objects.get(id=response.session['id'])
     userdetail = users.objects.get(id=id)
-    return render(response, "page/account/edit.html",{"userdetail":userdetail})
+    return render(response, "page/account/edit.html",{"userdetail":userdetail,"user":user})
 
 @csrf_exempt
 def userdetail(response,id):
     if not response.session._session:
         return redirect("login-admin")
+    user = users.objects.get(id=response.session['id'])
     userdetail = users.objects.get(id=id)
-    return render(response, "page/account/profile.html",{"userdetail":userdetail})
+    return render(response, "page/account/profile.html",{"userdetail":userdetail,"user":user})
 
 @csrf_exempt
 def categories(response):
     if not response.session._session:
         return redirect("login-admin")
     categories = category.objects.all()
-    return render(response, "page/category/index.html",{"categories":categories})
+    user = users.objects.get(id=response.session['id'])
+    return render(response, "page/category/index.html",{"categories":categories,"user":user})
 
 @csrf_exempt
 def addcategories(response):
@@ -92,7 +114,8 @@ def addcategories(response):
         return redirect("login-admin")
     if(response.method =='POST'):
         return redirect("manager-category")
-    return render(response, "page/category/add.html")
+    user = users.objects.get(id=response.session['id'])
+    return render(response, "page/category/add.html",{"user":user})
 
 @csrf_exempt
 def editcategories(response,id):
@@ -102,13 +125,15 @@ def editcategories(response,id):
     
     if(response.method =='POST'):
         return redirect("manager-category")
-    return render(response, "page/category/edit.html",{"categorydetail":categorydetail})
+    user = users.objects.get(id=response.session['id'])
+    return render(response, "page/category/edit.html",{"categorydetail":categorydetail,"user":user})
 
 @csrf_exempt
 def invoices(response):
     if not response.session._session:
         return redirect("login-admin")
-    return render(response, "page/invoice/index.html")
+    user = users.objects.get(id=response.session['id'])
+    return render(response, "page/invoice/index.html",{"user":user})
 
 @csrf_exempt
 def addinvoice(response):
@@ -117,7 +142,8 @@ def addinvoice(response):
     
     if(response.method =='POST'):
         return redirect("manager-invoice")
-    return render(response, "page/invoice/add.html")
+    user = users.objects.get(id=response.session['id'])
+    return render(response, "page/invoice/add.html",{"user":user})
 
 @csrf_exempt
 def editinvoice(response,id):
@@ -125,13 +151,14 @@ def editinvoice(response,id):
         return redirect("login-admin")
     if(response.method =='POST'):
         return redirect("manager-invoice")
-    return render(response, "page/invoice/edit.html")
+    return render(response, "page/invoice/edit.html",{"user":user})
 
 @csrf_exempt
 def invoicedetial(response,id):
     if not response.session._session:
         return redirect("login-admin")
-    return render(response, "page/invoice/detail.html")
+    user = users.objects.get(id=response.session['id'])
+    return render(response, "page/invoice/detail.html",{"user":user})
 
 @csrf_exempt
 def products(response):
@@ -139,7 +166,8 @@ def products(response):
         return redirect("login-admin")
     products = product.objects.all()
     suppliers = provider.objects.all()
-    return render(response, "page/product/index.html",{"products":products,"suppliers":suppliers})
+    user = users.objects.get(id=response.session['id'])
+    return render(response, "page/product/index.html",{"products":products,"suppliers":suppliers,"user":user})
 
 @csrf_exempt
 def addproduct(response):
@@ -147,7 +175,8 @@ def addproduct(response):
         return redirect("login-admin")
     if(response.method =='POST'):
         return redirect("manager-product")
-    return render(response, "page/product/add.html")
+    user = users.objects.get(id=response.session['id'])
+    return render(response, "page/product/add.html",{"user":user})
 
 @csrf_exempt
 def editproduct(response,id):
@@ -157,9 +186,10 @@ def editproduct(response,id):
     productdetail = product.objects.get(id=id)
     categories = category.objects.all()
     suppliers = provider.objects.all()
+    user = users.objects.get(id=response.session['id'])
     if(response.method =='POST'):
         return redirect("manager-product")
-    return render(response, "page/product/edit.html",{"productdetail":productdetail,"categories": categories,"suppliers":suppliers})
+    return render(response, "page/product/edit.html",{"user":user,"productdetail":productdetail,"categories": categories,"suppliers":suppliers})
 
 @csrf_exempt
 def productdetail(response,id):
@@ -167,14 +197,16 @@ def productdetail(response,id):
         return redirect("login-admin")
     productdetail = product.objects.get(id=id)
     images = image.objects.filter(product_id = id)
-    return render(response, "page/product/detail.html",{"productdetail":productdetail, "images": images})
+    user = users.objects.get(id=response.session['id'])
+    return render(response, "page/product/detail.html",{"user":user,"productdetail":productdetail, "images": images})
 
 @csrf_exempt
 def supplier(response):
     if not response.session._session:
         return redirect("login-admin")
     supplier = provider.objects.all()
-    return render(response, "page/supplier/index.html",{"supplier":supplier})
+    user = users.objects.get(id=response.session['id'])
+    return render(response, "page/supplier/index.html",{"supplier":supplier,"user":user})
 
 @csrf_exempt
 def addsupplier(response):
@@ -182,7 +214,8 @@ def addsupplier(response):
         return redirect("login-admin")
     if(response.method =='POST'):
         return redirect("manager-supplier")
-    return render(response, "page/supplier/add.html")
+    user = users.objects.get(id=response.session['id'])
+    return render(response, "page/supplier/add.html",{"user":user})
 
 @csrf_exempt
 def editsupplier(response,id):
@@ -191,12 +224,14 @@ def editsupplier(response,id):
     supplier = provider.objects.get(id=id)
     if(response.method =='POST'):
         return redirect("manager-supplier")
-    return render(response, "page/supplier/edit.html",{"supplier":supplier})
+    user = users.objects.get(id=response.session['id'])
+    return render(response, "page/supplier/edit.html",{"supplier":supplier,"user":user})
 
 @csrf_exempt
 def supplierdetail(response,id):
     if not response.session._session:
         return redirect("login-admin")
     supplier = provider.objects.get(id=id)
-    return render(response, "page/supplier/detail.html",{"supplier":supplier})
+    user = users.objects.get(id=response.session['id'])
+    return render(response, "page/supplier/detail.html",{"supplier":supplier,"user":user})
 
