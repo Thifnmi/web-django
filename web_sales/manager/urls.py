@@ -28,8 +28,7 @@ urlpatterns = [
     path('suppliers/',views.supplier,name="manager-supplier"),
     path('suppliers/add/',views.addsupplier,name="add-supplier"),
     path('suppliers/edit/<str:id>',views.editsupplier,name="edit-supplier"),
-    path('suppliers/detail/<str:id>',views.supplierdetail,name="supplier-detail"),
-    
+    path('suppliers/detail/<str:id>',views.supplierdetail,name="supplier-detail"),   
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

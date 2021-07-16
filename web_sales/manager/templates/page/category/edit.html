@@ -1,5 +1,5 @@
 {% extends 'page/Layout.html' %}
-{% block title %}Admin | Mailbox{% endblock title %}
+{% block title %}Admin | Edit Category {{category.name}}{% endblock title %}
 {% load static %}
 {% block content %}
 <div class="row">
@@ -23,7 +23,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">Submit</button>
-                    <button type="submit" class="btn btn-inverse waves-effect waves-light">Cancel</button>
+                    <button type="button" class="btn btn-inverse waves-effect waves-light m-r-10"><a href="{% url 'manager-category' %}">Cancel</a></button>
                 </form>
             </div>
         </div>

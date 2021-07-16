@@ -64,19 +64,21 @@ def adduser(response):
     if not response.session._session:
         return redirect("login-admin")
     if(response.method =='POST'):
+        id = users.objects.all().count() + 1
         username = response.POST.get('username')
         password = response.POST.get('password')
         fullname = response.POST.get('fullname')
         birthday = response.POST.get('birthday')
         gender = response.POST.get('gender')
+        type = response.POST.get('type')
         email = response.POST.get('email')
         phone = response.POST.get('phone')
         address = response.POST.get('address')
         country = response.POST.get('country')
         facebook = response.POST.get('facebook')
         image = response.POST.get('file')
-        print(f"{username} {password} {fullname} {birthday} {gender} {email} {phone} {address} {country} {facebook} {image}")
-        new_account = users(username=username,password=password, fullname=fullname,birthday=birthday,gender=gender,email=email,phonenumber=phone,address=address,country=country,facebook=facebook,image=image)
+        print(f"{id}{username} {password} {fullname} {birthday} {gender} {type} {email} {phone} {address} {country} {facebook} {image}")
+        new_account = users(id=id,username=username,password=password, fullname=fullname,birthday=birthday,gender=gender,role_id=type,email=email,phonenumber=phone,address=address,country=country,facebook=facebook,image=image)
         new_account.save()
         return redirect("users")
     user = users.objects.get(id=response.session['id'])

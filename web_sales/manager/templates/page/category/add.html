@@ -1,5 +1,5 @@
 {% extends 'page/Layout.html' %}
-{% block title %}Admin | Mailbox{% endblock title %}
+{% block title %}Admin | Add Category{% endblock title %}
 {% load static %}
 {% block content %}
 <!-- import code hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee -->
@@ -23,8 +23,8 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">Xác nhận</button>
-                    <a href="<?= base_url() ?>/admin/category" class="btn btn-inverse waves-effect waves-light m-r-10">Hủy</button>
+                    <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">Submit</button>
+                    <button type="button" class="btn btn-inverse waves-effect waves-light m-r-10"><a href="{% url 'manager-category' %}">Cancel</a></button>
                 </form>
             </div>
         </div>
