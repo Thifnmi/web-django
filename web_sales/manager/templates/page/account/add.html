@@ -9,7 +9,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Basic Information</h5>
-                                <form action="{% url 'add-user' %}" class="form-material form-horizontal m-t-30" enctype="multipart/form-data" method='POST' >
+                                <form action="" class="form-material form-horizontal m-t-30" enctype="multipart/form-data" method='POST' >
                                 {% csrf_token %}
                                     <div class="form-group">
                                         <label class="col-md-12" for="example-text">User Name</span>
@@ -74,7 +74,7 @@
                                     <label class="col-md-12" for="phone">Address</span>
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="text" maxlength="11" id="address" name="address"
+                                            <input type="text" id="address" name="address"
                                                 class="form-control" placeholder="enter your address">
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@
                                     <label class="col-md-12" for="phone">Country</span>
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="text" maxlength="11" id="country" name="country"
+                                            <input type="text" id="country" name="country"
                                                 class="form-control" placeholder="enter your country">
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@
                                     <label class="col-md-12" for="phone">Facebook</span>
                                         </label>
                                         <div class="col-md-12">
-                                            <input type="text" maxlength="11" id="facebook" name="facebook"
+                                            <input type="text" id="facebook" name="facebook"
                                                 class="form-control" placeholder="enter your facebook">
                                         </div>
                                     </div>
@@ -102,33 +102,7 @@
                                             <input type="file" id="input-file-now" name="file" class="dropify">
                                         </div>
                                     </div>
-                                    
-                
-                                    <!-- <div class="row">
-                                        <div class="col-lg-6 col-md-6">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h4 class="card-title">Avatar</h4>
-                                                    <label for="input-file-now">Choose a image</label>
-                                                    <input type="file" id="input-file-now" class="dropify" name='file'/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    
-                                    </div> -->
-                
-                
-                
-                                    <!-- Comment -->
-                                    <!-- <div class="form-group">
-                                        <label class="col-sm-12">Profile Image</label>
-                                        <div class="col-sm-12">
-                                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
-                                                <div class="form-control" data-trigger="fileinput"> <i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div> <span class="input-group-addon btn btn-default btn-file"> <span class="fileinput-new">Select file</span> <span class="fileinput-exists">Change</span>
-                                                <input type="file" name="..."> </span> <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a> </div>
-                                        </div>
-                                    </div> -->
-                
+
                                     <button type="submit"
                                         class="btn btn-info waves-effect waves-light m-r-10">Submit</button>
                                     <button type="submit"
