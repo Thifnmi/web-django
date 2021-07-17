@@ -2,9 +2,13 @@ from django.shortcuts import render,redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from main.models import banner,product,users,orders,order_detail,category,contact,About,image,provider
-
+from django.core.files.storage import FileSystemStorage
+import string,random
 
 # Create your views here.
+def randomname(size=10, chars=string.ascii_uppercase + string.ascii_lowercase + string.digits):
+    name = ''.join(random.choice(chars) for _ in range(size))
+    return name + '.png'
 @csrf_exempt
 def index(response):
     if not response.session._session:
@@ -34,7 +38,7 @@ def login(response):
         account = users.objects.get(username=username)
         if (account.password == password and account.role_id != "2"):
             response.session['id'] = account.id
-            # response.session.set_expiry(120)
+            response.session.set_expiry(3600)
             response.session.modified = True
             return redirect("index-admin")
         else:
@@ -63,8 +67,15 @@ def user(response):
 def adduser(response):
     if not response.session._session:
         return redirect("login-admin")
+
     if(response.method =='POST'):
         id = users.objects.all().count() + 1
+        alluser = users.objects.all()
+        for user in alluser:
+            if id == int(user.id):
+                id = int(user.id) + 1
+            else:
+                id = id
         username = response.POST.get('username')
         password = response.POST.get('password')
         fullname = response.POST.get('fullname')
@@ -76,11 +87,14 @@ def adduser(response):
         address = response.POST.get('address')
         country = response.POST.get('country')
         facebook = response.POST.get('facebook')
-        image = response.POST.get('file')
-        print(f"{id}{username} {password} {fullname} {birthday} {gender} {type} {email} {phone} {address} {country} {facebook} {image}")
-        new_account = users(id=id,username=username,password=password, fullname=fullname,birthday=birthday,gender=gender,role_id=type,email=email,phonenumber=phone,address=address,country=country,facebook=facebook,image=image)
+        image = response.FILES['file']
+        fs = FileSystemStorage()
+        filename = fs.save(image.name, image)
+        uploaded_file_url = fs.url(filename)
+        new_account = users(id=id,username=username,password=password, fullname=fullname,birthday=birthday,gender=gender,role_id=type,email=email,phonenumber=phone,address=address,country=country,facebook=facebook,image=uploaded_file_url)
         new_account.save()
         return redirect("users")
+
     user = users.objects.get(id=response.session['id'])
     return render(response, "page/account/add.html",{"user":user})
 
@@ -88,10 +102,26 @@ def adduser(response):
 def edituser(response,id):
     if not response.session._session:
         return redirect("login-admin")
-    if(response.method =='POST'):
-        return redirect("users")
     user = users.objects.get(id=response.session['id'])
     userdetail = users.objects.get(id=id)
+    if(response.method =='POST'):
+        userdetail.username = response.POST.get('username')
+        userdetail.password = response.POST.get('password')
+        userdetail.fullname = response.POST.get('fullname')
+        userdetail.birthday = response.POST.get('birthday')
+        userdetail.gender = response.POST.get('gender')
+        userdetail.email = response.POST.get('email')
+        userdetail.phone = response.POST.get('phone')
+        userdetail.address = response.POST.get('address')
+        userdetail.country = response.POST.get('country')
+        userdetail.facebook = response.POST.get('facebook')
+        image = response.FILES['file']
+        fs = FileSystemStorage()
+        filename = fs.save(image.name, image)
+        userdetail.image = fs.url(filename)
+        userdetail.save()
+        return redirect("users")
+    
     return render(response, "page/account/edit.html",{"userdetail":userdetail,"user":user})
 
 @csrf_exempt
@@ -178,7 +208,9 @@ def addproduct(response):
     if(response.method =='POST'):
         return redirect("manager-product")
     user = users.objects.get(id=response.session['id'])
-    return render(response, "page/product/add.html",{"user":user})
+    categories = category.objects.all()
+    supplier = provider.objects.all()
+    return render(response, "page/product/add.html",{"user":user,"categories":categories,"supplier":supplier})
 
 @csrf_exempt
 def editproduct(response,id):

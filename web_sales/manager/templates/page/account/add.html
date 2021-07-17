@@ -2,122 +2,113 @@
 {% block title %}Admin | Add Account{% endblock title %}
 {% load static %}
 {% block content %}
- <!-- start  main content -->
-                
- <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Basic Information</h5>
-                                <form action="" class="form-material form-horizontal m-t-30" enctype="multipart/form-data" method='POST' >
-                                {% csrf_token %}
-                                    <div class="form-group">
-                                        <label class="col-md-12" for="example-text">User Name</span>
-                                        </label>
-                                        <div class="col-md-12">
-                                            <input type="text" id="example-text" name="username" class="form-control"
-                                                placeholder="enter your username">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12" for="password">Password</span>
-                                        </label>
-                                        <div class="col-md-12">
-                                            <input type="password" id="password" name="password" class="form-control"
-                                                placeholder="enter your password">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12" for="fName">Full Name</span>
-                                        </label>
-                                        <div class="col-md-12">
-                                            <input type="text" id="fName" name="fullname" class="form-control"
-                                                placeholder="enter your full name">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12" for="bdate">Date of Birth</span></label>
-                                        <div class="col-md-12">
-                                            <input type="date" id="bdate" name="birthday" class="form-control mydatepicker"
-                                                placeholder="enter your birth date">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-5">Gender</label>
-                                        <label class="col-sm-5">Type</label>
-                                        <div class="col-sm-12">
-                                                <select class="form-control col-sm-5" name='gender'>
-                                                    <option>Select Gender</option>
-                                                    <option value="Nam">Male</option>
-                                                    <option value="Nu">Female</option>
-                                                </select>
-                                                <select class="form-control col-sm-5" name='type'>
-                                                    <option>Select Type</option>
-                                                    <option value="1">Admin</option>
-                                                    <option value="2">Custommer</option>
-                                                </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12" for="email">Email</span>
-                                        </label>
-                                        <div class="col-md-12">
-                                            <input type="email" id="email" name="email" class="form-control"
-                                                placeholder="enter your email">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12" for="phone">Phone</span>
-                                        </label>
-                                        <div class="col-md-12">
-                                            <input type="number" maxlength="11" id="phone" name="phone"
-                                                class="form-control" placeholder="enter your phone">
-                                        </div>
-                                    </div>
-                
-                                    <div class="form-group">
-                                    <label class="col-md-12" for="phone">Address</span>
-                                        </label>
-                                        <div class="col-md-12">
-                                            <input type="text" id="address" name="address"
-                                                class="form-control" placeholder="enter your address">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                    <label class="col-md-12" for="phone">Country</span>
-                                        </label>
-                                        <div class="col-md-12">
-                                            <input type="text" id="country" name="country"
-                                                class="form-control" placeholder="enter your country">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                    <label class="col-md-12" for="phone">Facebook</span>
-                                        </label>
-                                        <div class="col-md-12">
-                                            <input type="text" id="facebook" name="facebook"
-                                                class="form-control" placeholder="enter your facebook">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                    <label class="col-md-12" for="phone">Avatar</span>
-                                        </label>
-                                        <div class="col-md-12">
-                                            <label for="input-file-now">Choose a image</label>
-                                            <input type="file" id="input-file-now" name="file" class="dropify">
-                                        </div>
-                                    </div>
+<!-- start  main content -->
 
-                                    <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">Submit</button>
-                                    <button type="button" class="btn btn-inverse waves-effect waves-light m-r-10"><a href="{% url 'users' %}">Cancel</a></button>
-                                </form>
-                            </div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Basic Information</h5>
+                <form action="" class="form-material form-horizontal m-t-30" enctype="multipart/form-data" method='POST'>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="col-md-12" for="example-text">User Name</span>
+                        </label>
+                        <div class="col-md-12">
+                            <input type="text" id="example-text" name="username" class="form-control" placeholder="enter your username">
                         </div>
                     </div>
-                </div>
-                <!-- /.row -->
-                <!-- ============================================================== -->
-                <!-- End Page Content -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
+                    <div class="form-group">
+                        <label class="col-md-12" for="password">Password</span>
+                        </label>
+                        <div class="col-md-12">
+                            <input type="password" id="password" name="password" class="form-control" placeholder="enter your password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12" for="fName">Full Name</span>
+                        </label>
+                        <div class="col-md-12">
+                            <input type="text" id="fName" name="fullname" class="form-control" placeholder="enter your full name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12" for="bdate">Date of Birth</span></label>
+                        <div class="col-md-12">
+                            <input type="date" id="bdate" name="birthday" class="form-control mydatepicker" placeholder="enter your birth date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-5">Gender</label>
+                        <label class="col-sm-5">Type</label>
+                        <div class="col-sm-12">
+                            <select class="form-control col-sm-5" name='gender'>
+                                <option>Select Gender</option>
+                                <option value="Nam">Male</option>
+                                <option value="Nu">Female</option>
+                            </select>
+                            <select class="form-control col-sm-5" name='type'>
+                                <option>Select Type</option>
+                                <option value="1">Admin</option>
+                                <option value="2">Custommer</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12" for="email">Email</span>
+                        </label>
+                        <div class="col-md-12">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="enter your email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12" for="phone">Phone</span>
+                        </label>
+                        <div class="col-md-12">
+                            <input type="number" maxlength="11" id="phone" name="phone" class="form-control" placeholder="enter your phone">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-12" for="phone">Address</span>
+                        </label>
+                        <div class="col-md-12">
+                            <input type="text" id="address" name="address" class="form-control" placeholder="enter your address">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12" for="phone">Country</span>
+                        </label>
+                        <div class="col-md-12">
+                            <input type="text" id="country" name="country" class="form-control" placeholder="enter your country">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12" for="phone">Facebook</span>
+                        </label>
+                        <div class="col-md-12">
+                            <input type="text" id="facebook" name="facebook" class="form-control" placeholder="enter your facebook">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12" for="phone">Avatar</span>
+                        </label>
+                        <div class="col-md-12">
+                            <label for="input-file-now">Choose a image</label>
+                            <input type="file" id="input-file-now" name="file" class="dropify">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">Submit</button>
+                    <button type="button" class="btn btn-inverse waves-effect waves-light m-r-10"><a href="{% url 'users' %}">Cancel</a></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+<!-- ============================================================== -->
+<!-- End Page Content -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
 {% endblock content %}

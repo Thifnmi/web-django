@@ -7,7 +7,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Basic Information</h5>
+                <h1 class="card-title">Add Product</h1>
                 <form class="form-material form-horizontal m-t-30" action="" method='POST' enctype="multipart/form-data">
                 {% csrf_token %}
                     <div class="form-group">
@@ -22,7 +22,7 @@
                         <label class="col-md-12" for="price">Price</span>
                         </label>
                         <div class="col-md-12">
-                            <input type="text" id="price" name="price" class="form-control"
+                            <input type="number" id="price" name="price" class="form-control"
                             placeholder="enter product price">
                         </div>
                     </div>
@@ -30,32 +30,37 @@
                         <label class="col-md-12" for="quantity">Quantity</span>
                         </label>
                         <div class="col-md-12">
-                            <input type="text" id="quantity" name="quantity" class="form-control"
+                            <input type="number" id="quantity" name="quantity" class="form-control"
                             placeholder="enter quantity">
                         </div>
                     </div>
-                    <div class="form-group">
+                    {% comment %} <div class="form-group">
                         <label class="col-md-12" for="color">Product Code</span>
                         </label>
                         <div class="col-md-12">
                             <input type="text" id="color" name="code" class="form-control "
                             placeholder="Product code">
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                     <div class="form-group">
                         <label class="col-sm-12">Category</label>
                         <div class="col-sm-12">
                             <select class="form-control" name='category'>
-                                <option>Select</option>
-                                
+                                <option>Select Type</option>
+                                {% for category in categories %}
+                                    <option value="{{category.id}}">{{category.name}}</option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-12">Provider</label>
+                        <label class="col-sm-12">Supplier</label>
                         <div class="col-sm-12">
                             <select class="form-control" name='provider'>
-                                <option value=""></option>
+                                <option>Select Supplier</option>
+                                {% for supplier in supplier %}
+                                    <option value="{{supplier.id}}">{{supplier.company_name}}</option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>                                  
@@ -65,7 +70,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Thumnail</h4>
                                     <label for="input-file-now">Choose a image</label>
-                                    <input type="file" id="input-file-now" class="dropify" name='fileToUpload'/>
+                                    <input type="file" id="input-file-now" class="dropify" name='image'/>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +98,7 @@
                                         </div>
                                         <div class="col-sm-3 nopadding">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="Major" name="value[]" value="" placeholder="value">
+                                                <input type="text" class="form-control" id="Major" name="value[]" value="" placeholder="Value">
                                             </div>
                                         </div>
                                         <div class="input-group-append" style="height: 40px;">

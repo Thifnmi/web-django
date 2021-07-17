@@ -6,10 +6,9 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                {% comment %} <h5 class="card-title">Admin</h5> {% endcomment %}
-                <h6 class="card-title">All Account</h6>
+                <h1 class="card-title">All Account</h1>
                 <div class="table-responsive">
-                    <table id="example23" class="table table-striped">
+                    <table id="tbluser" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -19,7 +18,7 @@
                                 <th>Date</th>
                                 <th>Phone</th>
                                 <th>Role</th>
-                                <th>ACtions</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,12 +45,10 @@
                                             <div class="ac">
                                                 <a href="" data-toggle="tooltip" data-placement="bottom" onclick="return confirm('Are you sure?');" id="sa-confirm" data-original-title="Delete"><i class="far fa-trash-alt"></i></a>
                                             </div>
-
                                         </div>
                                     </td>
                                 </tr>
                             {% endfor %}
-
                         </tbody>
                     </table>
                 </div>
@@ -59,7 +56,4 @@
         </div>
     </div>
 </div>
-
-<!-- ============================================================== -->
-<!-- End Page Content -->
 {% endblock content %}

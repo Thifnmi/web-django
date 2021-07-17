@@ -3,7 +3,6 @@
 {% load static %}
 {% block content %}
 <div class="row d-flex justify-content-center">
-    <!-- Column -->
     <div class="col-lg-6 ">
         <div class="card">
             <div class="card-body">
@@ -20,24 +19,20 @@
             </div>
             <div class="card-body">
                 <small class="text-muted p-t-30 db">Date of Birth</small>
-                <h6>{{user.birthday}}</h6>
+                <h6>{{userdetail.birthday}}</h6>
                 <small class="text-muted">Email address </small>
-                <h6>{{user.email}}</h6>
+                <h6>{{userdetail.email}}</h6>
                 <small class="text-muted p-t-30 db">Phone</small>
-                <h6>{{user.telephone}}</h6>
+                <h6>{{userdetail.phonenumber}}</h6>
                 <small class="text-muted p-t-30 db">Address</small>
-                <h6>{{user.address}}</h6>
-
-
+                <h6>{{userdetail.address}}</h6>
                 <br>
-                <button class="btn btn-circle btn-secondary"><i class="fab fa-facebook-f"></i></button>
-                <button class="btn btn-circle btn-secondary"><i class="fab fa-twitter"></i></button>
-                <button class="btn btn-circle btn-secondary"><i class="fab fa-youtube"></i></button>
-                <button class="btn btn-circle btn-secondary btn-edit-profile" data-toggle="tooltip" data-placement="bottom" title="Edit Profile"><a href="{% url 'edit-user' id=user.id %}"><i class="fas fa-edit"></i></a></button>
-
+                <button class="btn btn-circle btn-secondary"><a target="_blank" href="https://www.facebook.com/Thifnmi/"><i class="fab fa-facebook-f"></i></a></button>
+                {% comment %} <button class="btn btn-circle btn-secondary"><a target="_blank" href="https://www.facebook.com/Thifnmi/"><i class="fab fa-twitter"></i></a></button> {% endcomment %}
+                <button class="btn btn-circle btn-secondary"><a target="_blank" href="https://www.youtube.com/channel/UCoqmxK5Aw-2Z5bV0MDwROsw"><i class="fab fa-youtube"></i></a></button>
+                <button class="btn btn-circle btn-secondary btn-edit-profile" data-toggle="tooltip" data-placement="bottom" title="Edit Profile"><a href="{% url 'edit-user' id=userdetail.id %}"><i class="fas fa-edit"></i></a></button>
             </div>
         </div>
     </div>
-
 </div>
 {% endblock content %}

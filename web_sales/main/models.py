@@ -123,7 +123,7 @@ class provider(models.Model):
 class users(models.Model):
     _id = models.ObjectIdField(primary_key=True)
     id = models.TextField()
-    image = models.TextField()
+    image = models.ImageField(upload_to='image/')
     username = models.TextField()
     password = models.TextField()
     fullname = models.TextField()
@@ -136,7 +136,6 @@ class users(models.Model):
     role_id = models.TextField()
     facebook = models.TextField()
     twitter = models.TextField()
-    gmail = models.TextField()
     instagram = models.TextField()
     objects = models.DjongoManager()
 
