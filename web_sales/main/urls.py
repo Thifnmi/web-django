@@ -5,6 +5,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("category/<str:id>",views.shop, name="category"),
     path("login/",views.login, name="login"),
+    path("logout/",views.logout, name="logout"),
     path("account/cart/",views.cart, name="cart"),
     path("contact/",views.contact, name="contact"),
     path("account/checkout/",views.checkout, name="checkout"),

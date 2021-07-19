@@ -2,6 +2,11 @@
 {% block title %} Login {% endblock title %}
 {% load static %}
 {% block content %}
+{% if messages %}
+    {% for message in messages %}
+        <script>alert("{{message}}")</script>
+    {% endfor %}
+{% endif %}
 <div class="main_content">
     <!-- START LOGIN SECTION -->
     <div class="login_register_wrap section">
@@ -13,7 +18,7 @@
                             <div class="heading_s1">
                                 <h3 style="text-align: center;">Login</h3>
                             </div>
-                            <form action="{% url 'index' %}" method="post">
+                            <form action="" method="post">
                             {% csrf_token %}
                                 <div class="form-group">
                                     <input type="text" required="" class="form-control" name="username" placeholder="Username">
