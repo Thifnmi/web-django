@@ -11,6 +11,5 @@ urlpatterns = [
     path("product-detail/<str:id>",views.product_detail, name="detail"),
     path("register/",views.register, name="register"),
     path("account/profile/",views.profile, name="profile"),
-    # path("manager/",views.index_manager, name="manager"),
-    # path("manager/login",views.admin_login, name="login-admin")
+    path("supplier/<str:id>",views.supplier, name="supplier"),
 ]

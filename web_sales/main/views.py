@@ -24,7 +24,6 @@ def shop(respone, id):
     title = category.objects.get(id=str(id))
     categories = category.objects.all()
     paginator  = Paginator(sp_list, 8)
-
     page_number = respone.GET.get('page')
     sp = paginator.get_page(page_number)
     return render(respone, "client/category.html", {"sp": sp, "title" : title, "categories" : categories})
@@ -59,8 +58,9 @@ def profile(respone):
     categories = category.objects.all()
     return render(respone, "client/profile.html",{"categories" : categories})
 
-# def index_manager(response):
-#     return render(response, "page/index.html")
-
-# def admin_login(response):
-#     return render(response, "page/login.html")
+def supplier(response,id):
+    product_list = product.objects.filter(supplier_id = id)
+    paginator  = Paginator(product_list, 8)
+    page_number = response.GET.get('page')
+    products = paginator.get_page(page_number)
+    return render(response, "client/supplier.html",{"products":products})
