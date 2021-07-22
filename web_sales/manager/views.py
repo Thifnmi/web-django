@@ -38,8 +38,8 @@ def login(response):
         account = users.objects.get(username=username)
         if (account.password == password and account.role_id != "2"):
             response.session['id'] = account.id
-            response.session.set_expiry(3600)
-            response.session.modified = True
+            # response.session.set_expiry(3600)
+            # response.session.modified = True
             return redirect("index-admin")
         else:
             messages.error(response,"Username or password don\'t match")
