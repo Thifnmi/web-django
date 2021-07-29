@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
+from django.http import JsonResponse
 from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
 from .models import banner,product,users,orders,order_detail,category,contact,About,image,provider
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
+from django.template.loader import render_to_string
 
 # Create your views here.
 @csrf_exempt
@@ -39,7 +41,9 @@ def login(response):
         if (account.password == password):
             response.session['id'] = account.id
             response.session.set_expiry(3600)
+            print("set done")
             response.session.modified = True
+            print("done modify")
             return redirect("index")
         else:
             messages.error(response,"Username or password don\'t match")
@@ -73,7 +77,17 @@ def cart(response):
     if not response.session._session:
         return redirect("login")
     categories = category.objects.all()
-    return render(response, "client/cart.html",{"categories" : categories})
+    # return render(response, "client/cart.html",{"categories" : categories})
+    total_amt=0
+    if 'cartdata' in response.session:
+        for p_id,item in response.session['cartdata'].items():
+            print(item['price'])
+            total_amt += int(item['qty']) * float(item['price'])
+        print(len(response.session['cartdata'].items()))
+        print('test')
+        return render(response, 'client/cart.html',{"categories" : categories,'cart_data':response.session['cartdata'],'totalitems':len(response.session['cartdata']),'total_amt':total_amt})
+    else:
+        return render(response, 'client/cart.html',{"categories" : categories,'cart_data':'','totalitems':0,'total_amt':total_amt})
 
 def register(response):
     # if(response.method =='POST'):
@@ -117,3 +131,68 @@ def supplier(response,id):
     page_number = response.GET.get('page')
     products = paginator.get_page(page_number)
     return render(response, "client/supplier.html",{"products":products})
+
+def add_to_cart(response):
+	# del response.session['cartdata']
+    cart_p={}
+    cart_p[str(response.GET['id'])]={
+		'image':response.GET['image'],
+		'title':response.GET['title'],
+		'qty':response.GET['qty'],
+		'price':response.GET['price'],
+	}
+    print(response.GET['price'])
+    if 'cartdata' in response.session:
+        print(response.GET['id'])
+        if str(response.GET['id']) in response.session['cartdata']:
+            cart_data=response.session['cartdata']
+            cart_data[str(response.GET['id'])]['qty']=int(cart_p[str(response.GET['id'])]['qty'])
+            cart_data.update(cart_data)
+            response.session['cartdata']=cart_data
+            print("product is in cart")
+        else:
+            cart_data=response.session['cartdata']
+            cart_data.update(cart_p)
+            response.session['cartdata']=cart_data
+            print("add new product to cart")
+    else:
+        response.session['cartdata']=cart_p
+        print("add new product to cart")
+    return JsonResponse({'data':response.session['cartdata'],'totalitems':len(response.session['cartdata'])})
+def cart_list(response):
+	total_amt=0
+	if 'cartdata' in response.session:
+		for p_id,item in response.session['cartdata'].items():
+			total_amt+=int(item['qty'])*float(item['price'])
+		return render(response, 'client/cart.html',{'cart_data':response.session['cartdata'],'totalitems':len(response.session['cartdata']),'total_amt':total_amt})
+	else:
+		return render(response, 'client/cart.html',{'cart_data':'','totalitems':0,'total_amt':total_amt})
+
+
+# Delete Cart Item
+def delete_cart_item(response):
+	p_id=str(response.GET['id'])
+	if 'cartdata' in response.session:
+		if p_id in response.session['cartdata']:
+			cart_data=response.session['cartdata']
+			del response.session['cartdata'][p_id]
+			response.session['cartdata']=cart_data
+	total_amt=0
+	for p_id,item in response.session['cartdata'].items():
+		total_amt+=int(item['qty'])*float(item['price'])
+	t=render_to_string('ajax/cart-list.html',{'cart_data':response.session['cartdata'],'totalitems':len(response.session['cartdata']),'total_amt':total_amt})
+	return JsonResponse({'data':t,'totalitems':len(response.session['cartdata'])})
+
+def update_cart_item(response):
+	p_id=str(response.GET['id'])
+	p_qty=response.GET['qty']
+	if 'cartdata' in response.session:
+		if p_id in response.session['cartdata']:
+			cart_data=response.session['cartdata']
+			cart_data[str(response.GET['id'])]['qty']=p_qty
+			response.session['cartdata']=cart_data
+	total_amt=0
+	for p_id,item in response.session['cartdata'].items():
+		total_amt+=int(item['qty'])*float(item['price'])
+	t=render_to_string('ajax/cart-list.html',{'cart_data':response.session['cartdata'],'totalitems':len(response.session['cartdata']),'total_amt':total_amt})
+	return JsonResponse({'data':t,'totalitems':len(response.session['cartdata'])})

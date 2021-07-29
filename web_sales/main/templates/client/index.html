@@ -182,19 +182,22 @@
 					</div>
 					<div class="tab-content">
 						<div class="tab-pane fade active in" id="ao">
-							{% for ao in ao %}
+							{% for product in ao %}
 							<div class="col-sm-3">
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<a href="{% url 'detail' id=ao.id %}"><img src="{{ao.image}}"
-													alt="{{ao.name}}" /></a>
-											<h2>{{ao.price}}</h2>
-											<a href="{% url 'detail' id=ao.id %}">
-												<p>{{ao.name}}</p>
+											<input type="hidden" value="1" class="form-control product-qty-{{product.id}}" id="productQty" />
+											<input type="hidden" class="product-image-{{product.id}}" value="{{product.image}}" />
+											<input type="hidden" class="product-id-{{product.id}}" value="{{product.id}}" />
+											<input type="hidden" class="product-title-{{product.id}}" value="{{product.title}}" />
+											<a href="{% url 'detail' id=product.id %}"><img src="{{product.image}}" alt="{{product.name}}" /></a>
+											<h2 class="product-price-{{product.id}}">{{product.price}}</h2>
+											<a href="{% url 'detail' id=product.id %}">
+												<p>{{product.name}}</p>
 											</a>
-											<a href="#" class="btn btn-default add-to-cart"><i
-													class="fa fa-shopping-cart"></i>Add to cart</a>
+											{% comment %} <a href="#" data-id="{{ao.id}}" onclick="addToCart(event, this)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a> {% endcomment %}
+											<button class="btn btn-sm btn-primary add-to-cart" data-index="{{product.id}}"><i class="fa fa-shopping-cart"></i> Add to cart</button>
 										</div>
 									</div>
 								</div>
@@ -210,7 +213,8 @@
 											<a href="{% url 'detail' id=vaydam.id %}"><img src="{{vaydam.image}}" alt="{{vaydam.name}}" /></a>
 											<h2>{{vaydam.price}}</h2>
 											<a href="{% url 'detail' id=vaydam.id %}"> <p>{{vaydam.name}}</p> </a>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											{% comment %} <a href="#" class="btn btn-default add-to-cart" data-index="{{vaydam.id}}"><i class="fa fa-shopping-cart"></i>Add to cart</a> {% endcomment %}
+											<button class="btn btn-sm btn-primary add-to-cart" data-index="{{vaydam.id}}"><i class="fa fa-shopping-cart"></i> Add to cart</button>
 										</div>
 									</div>
 								</div>
@@ -335,7 +339,7 @@
 
 				<div class="recommended_items">
 					<!--recommended_items-->
-					<h2 class="title text-center">recommended items</h2>
+					<h2 class="title text-center">Recommended items</h2>
 					<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 						<div class="carousel-inner">
 							<div class="item active">

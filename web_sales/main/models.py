@@ -142,18 +142,3 @@ class users(models.Model):
     class Meta:
         db_table = 'main_users'
 
-class a(models.Model):
-    _id = models.AutoField(primary_key=True)
-    company_name = models.TextField()
-    image = models.TextField()
-    weburl = models.TextField()
-    telephone = models.TextField()
-    email = models.TextField()
-    country = models.TextField()
-    address = models.TextField()
-    objects = models.DjongoManager()
-
-    
-
-    class Meta:
-        db_table = 'main_a'

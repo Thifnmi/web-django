@@ -7,6 +7,7 @@
     <meta name="author" content="">
     <title>{% block title %}{% endblock title %}</title>
     {% load static %}
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 	<link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
@@ -60,12 +61,15 @@
 					<div class="col-md-8 clearfix">
 						<div class="mainmenu pull-right">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="{% url 'checkout' %}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-								<li><a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-								<li class="dropdown"><a href=""> Account<i class="fa fa-angle-down"></i></a>
+								<li><a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i> Cart (<span class="cart-list">{{request.session.cartdata|length}}</span>)</a></li>
+								<li class="dropdown"><a href=""><i class="fad fa-user-circle"></i> Account</a>
 									<ul role="menu" class="sub-menu">
 										<li><a href="{% url 'profile' %}"><i class="fa fa-user"></i> Profile</a></li>
-										<li><a href="{% url 'login' %}"><i class="fa fa-lock"></i> Login</a></li>
+										{% if request.session.id %}
+											<li><a href="{% url 'logout' %}"><i class="fa fa-lock"></i> Logout</a></li>
+										{% else %}
+											<li><a href="{% url 'login' %}"><i class="fa fa-lock"></i> Login</a></li>
+										{% endif %}
                                     </ul>
 								</li>
 							</ul>
@@ -172,6 +176,7 @@
 	<script src="{% static 'js/contact.js' %}"></script>
     <script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
+	<script src="{% static 'js/custom.js' %}"></script>
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7TypZFTl4Z3gVtikNOdGSfNTpnmq-ahQ&amp;callback=initMap"></script>
     <script type="text/javascript" src="{% static 'js/gmaps.js' %}"></script>
